@@ -1,0 +1,121 @@
+h1#gta {
+    text-align: center;
+}
+
+body {
+    background-color: rgb(18, 177, 235);
+    font-style: italic Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    border: 2px solid black; 
+    border-radius: 15px; 
+    padding: 20px;
+}
+
+h1 {
+    border: 2px solid rgb(15, 14, 14);
+    font-size: 80px;
+    text-align: center;
+    margin: 3px auto;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    font-family: Calibri, sans-serif;
+}
+
+h2 {
+    font-size: 20px;
+    color: rgb(15, 14, 14);
+    text-align: center;
+}
+
+.Links {
+    color: rgb(159, 14, 14);
+    border: 2px solid rgb(15, 14, 14);
+    display: flex;
+    width: fit-content;
+    gap: 3px;
+    margin: 10px;
+    padding: 5px;
+}
+
+
+
+.buttons {
+    display: flex;
+    width: fit-content;
+    gap: 3px;
+    border: 2px solid rgb(15, 14, 14);
+    margin: 10px;
+    padding: 5px;
+    background: rgb(18, 177, 235);
+}
+
+.buttons button {
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(18, 177, 235);
+    margin: 0;
+    padding: 6px 16px;
+    background: rgb(18, 177, 235);
+    font-size: 17px;
+    cursor: pointer;
+    font-weight: bold;
+    font-style: italic;
+    border-radius: 15px; 
+    padding: 20px;
+}
+
+    .cybersecurity {
+        border: 2px solid rgb(15, 14, 14);
+        margin: 10px;
+        padding: 10px;
+        background: rgb(27, 20, 94);
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        margin: 10px auto;
+        display: flex;
+        width: fit-content;
+        border-radius: 15px; 
+        padding: 20px;
+    }
+    .reinmagined {
+        border: 2px solid rgb(255, 0, 0);
+        margin: 10px;
+        padding: 10px;
+        background: rgb(25, 0, 255);
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        margin: 10px auto;
+        display: flex;
+        width: fit-content;
+        border-radius: 15px; 
+        padding: 20px;
+    }
+
+button {
+    background-color: rgb(27, 20, 94);
+    text-size: 30px;
+
+}
+
+.Links img {
+    width: 100px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.Links img.fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    object-fit: contain;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+}
