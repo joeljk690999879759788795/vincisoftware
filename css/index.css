@@ -26,20 +26,6 @@ h1 {
     
 }
 
-p {
-    border: 2px solid rgb(15, 14, 14);
-    font-size: 15px;
-    text-align: center;
-    margin: 3px auto;
-    width: fit-content;
-    border-radius: 15px;
-    padding: 16px;
-    color: rgb(0, 0, 0);
-    background: rgb(255, 255, 255);
-    font-family: OCR A Std, monospace;
-    
-}
-
 h2 {
     font-size: 20px;
     color: rgb(15, 14, 14);
@@ -160,4 +146,20 @@ button {
     border: none;
     margin: 0;
     padding: 0;
+}
+.revieuw {
+    border: 2px solid rgb(0, 0, 0);
+    background: rgb(124, 112, 238);
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin: 10px auto;
+    border-radius: 15px; 
+    padding: 20px;
+    width: 150px;
+}
+.container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
