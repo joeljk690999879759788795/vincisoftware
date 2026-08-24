@@ -3,8 +3,8 @@ h1#gta {
 }
 
 body {
-    background-color: rgb(18, 177, 235);
-    font-style: italic Arial, sans-serif;
+    background-color: rgb(126, 206, 235);
+    font-style: italic DejaVu Sans Mono, monospace;
     margin: 0;
     height: 100vh;
     border: 2px solid black; 
@@ -22,7 +22,22 @@ h1 {
     padding: 16px;
     color: rgb(0, 0, 0);
     background: rgb(255, 255, 255);
-    font-family: Calibri, sans-serif;
+    font-family: DejaVu Sans Mono, monospace;
+    
+}
+
+p {
+    border: 2px solid rgb(15, 14, 14);
+    font-size: 15px;
+    text-align: center;
+    margin: 3px auto;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+    font-family: OCR A Std, monospace;
+    
 }
 
 h2 {
@@ -32,29 +47,31 @@ h2 {
 }
 
 .Links {
-    color: rgb(159, 14, 14);
-    border: 2px solid rgb(15, 14, 14);
+    color: white;
+    border: 2px solid white;
     display: flex;
     width: fit-content;
-    gap: 3px;
+    gap: 8px;
     margin: 10px;
-    padding: 5px;
+    padding: 8px 14px;
+    border-radius: 0;
+    font-weight: bold;
+    text-decoration: none;
 }
-
 
 
 .buttons {
     display: flex;
     width: fit-content;
     gap: 3px;
-    border: 2px solid rgb(15, 14, 14);
+    border: 2px solid rgb(197, 167, 167);
     margin: 10px;
     padding: 5px;
     background: rgb(18, 177, 235);
 }
 
 .buttons button {
-    color: rgb(0, 0, 0);
+    color: rgb(180, 26, 26);
     border: 2px solid rgb(18, 177, 235);
     margin: 0;
     padding: 6px 16px;
@@ -71,7 +88,7 @@ h2 {
         border: 2px solid rgb(15, 14, 14);
         margin: 10px;
         padding: 10px;
-        background: rgb(27, 20, 94);
+        background: rgb(195, 193, 212);
         font-size: 25px;
         color: rgb(255, 255, 255);
         text-align: center;
@@ -97,8 +114,22 @@ h2 {
     }
 
 button {
-    background-color: rgb(27, 20, 94);
-    text-size: 30px;
+    background-color: rgb(255, 255, 255);
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+
+}
+
+.signin {
+    background-color: rgb(202, 255, 141);
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+
+}
+.exit {
+    background-color: rgb(255, 141, 141);
+    font-size: 20px;
+    color: rgb(0, 0, 0);
 
 }
 
