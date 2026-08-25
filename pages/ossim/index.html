@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VinciOS</title>
+    <link rel="stylesheet" href="linux.css">
+</head>
+<body class="os-desktop">
+    <main class="desktop" aria-label="VinciOS desktop">
+        <header class="top-panel">
+            <button class="activities-button" id="activities-button">Activities</button>
+            <span class="top-panel-title">VinciOS</span>
+            <div class="top-panel-status"><span>Wi-Fi</span><span>Volume</span><time id="top-clock">09:34</time></div>
+        </header>
+        <div class="desktop-icons">
+            <button class="desktop-icon" data-window="computer-window">
+                <span class="icon-art computer-art">▣</span>
+                <span>Computer</span>
+            </button>
+            <button class="desktop-icon" data-window="documents-window">
+                <span class="icon-art folder-art">▰</span>
+                <span>Documents</span>
+            </button>
+            <button class="desktop-icon" data-window="browser-window">
+                <span class="icon-art browser-art">◎</span>
+                <span>Internet</span>
+            </button>
+            <button class="desktop-icon" data-window="recycle-window">
+                <span class="icon-art recycle-art">♻</span>
+                <span>Recycle Bin</span>
+            </button>
+            <button class="desktop-icon" data-window="notes-window">
+                <span class="icon-art notes-art">✎</span>
+                <span>Notes</span>
+            </button>
+            <button class="desktop-icon" data-window="calculator-window">
+                <span class="icon-art calculator-art">▦</span>
+                <span>Calculator</span>
+            </button>
+        </div>
+
+        <section class="window welcome-window" id="welcome-window" aria-labelledby="welcome-title">
+            <header class="window-titlebar">
+                <span id="welcome-title">VinciOS Welcome Center</span>
+                <div class="window-controls">
+                    <button class="window-control minimize" aria-label="Minimize">−</button>
+                    <button class="window-control maximize" aria-label="Maximize">□</button>
+                    <button class="window-control close" aria-label="Close">×</button>
+                </div>
+            </header>
+            <div class="window-content welcome-content">
+                <div class="welcome-mark">V</div>
+                <div>
+                    <p class="eyebrow">VINCI SOFTWARE</p>
+                    <h1>Welcome to VinciOS</h1>
+                    <p class="welcome-copy">A familiar desktop for everyday work, music and web browsing.</p>
+                    <div class="welcome-actions">
+                        <button class="aero-button" data-window="computer-window">Explore Computer</button>
+                        <button class="aero-button secondary" data-window="browser-window">Open Internet</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="window app-window" id="computer-window" aria-labelledby="computer-title" hidden>
+            <header class="window-titlebar">
+                <span id="computer-title">Computer</span>
+                <div class="window-controls"><button class="window-control close" aria-label="Close">×</button></div>
+            </header>
+            <div class="window-content explorer-content">
+                <div class="address-bar"><span>Computer</span><span class="address-arrow">›</span><span>Local Disk (C:)</span></div>
+                <div class="file-grid">
+                    <button class="file-item"><span class="file-icon folder-art">▰</span>Documents</button>
+                    <button class="file-item"><span class="file-icon folder-art">▰</span>Pictures</button>
+                    <button class="file-item"><span class="file-icon drive-art">▤</span>Local Disk (C:)</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="window app-window" id="documents-window" aria-labelledby="documents-title" hidden>
+            <header class="window-titlebar"><span id="documents-title">Documents</span><div class="window-controls"><button class="window-control close" aria-label="Close">×</button></div></header>
+            <div class="window-content explorer-content"><div class="address-bar"><span>Documents</span></div><p class="empty-state">This folder is empty.</p></div>
+        </section>
+
+        <section class="window app-window" id="browser-window" aria-labelledby="browser-title" hidden>
+            <header class="window-titlebar"><span id="browser-title">Internet Explorer</span><div class="window-controls"><button class="window-control close" aria-label="Close">×</button></div></header>
+            <div class="window-content browser-content"><div class="browser-toolbar"><button aria-label="Back">‹</button><button aria-label="Forward">›</button><input value="https://vinci.local" aria-label="Address"></div><div class="browser-page"><div class="browser-logo">e</div><h2>Vinci Search</h2><p>Welcome to the web.</p><input class="search-box" placeholder="Search the web"><button class="aero-button">Search</button></div></div>
+        </section>
+
+        <section class="window app-window" id="recycle-window" aria-labelledby="recycle-title" hidden>
+            <header class="window-titlebar"><span id="recycle-title">Recycle Bin</span><div class="window-controls"><button class="window-control close" aria-label="Close">×</button></div></header>
+            <div class="window-content explorer-content"><p class="empty-state">The Recycle Bin is empty.</p></div>
+        </section>
+
+        <section class="window app-window notes-window" id="notes-window" aria-labelledby="notes-title" hidden>
+            <header class="window-titlebar"><span id="notes-title">Notepad</span><div class="window-controls"><button class="window-control minimize" aria-label="Minimize">−</button><button class="window-control maximize" aria-label="Maximize">□</button><button class="window-control close" aria-label="Close">×</button></div></header>
+            <div class="window-content notes-content"><div class="notes-menu">File&nbsp;&nbsp;&nbsp; Edit&nbsp;&nbsp;&nbsp; Format&nbsp;&nbsp;&nbsp; View&nbsp;&nbsp;&nbsp; Help</div><textarea aria-label="Notes" placeholder="Type something here...">Welcome to VinciOS Notepad.
+
+Your notes are kept in this window while it is open.</textarea></div>
+        </section>
+
+        <section class="window app-window calculator-window" id="calculator-window" aria-labelledby="calculator-title" hidden>
+            <header class="window-titlebar"><span id="calculator-title">Calculator</span><div class="window-controls"><button class="window-control close" aria-label="Close">×</button></div></header>
+            <div class="window-content calculator-content"><output id="calculator-display">0</output><div class="calculator-keys"><button data-calc="clear">C</button><button data-calc="operator">÷</button><button data-calc="operator">×</button><button data-calc="back">←</button><button data-calc="number">7</button><button data-calc="number">8</button><button data-calc="number">9</button><button data-calc="operator">−</button><button data-calc="number">4</button><button data-calc="number">5</button><button data-calc="number">6</button><button data-calc="operator">+</button><button data-calc="number">1</button><button data-calc="number">2</button><button data-calc="number">3</button><button data-calc="equals">=</button><button data-calc="number" class="zero">0</button><button data-calc="number">.</button></div></div>
+        </section>
+
+        <div class="start-menu" id="start-menu" hidden>
+            <div class="start-user"><div class="user-avatar">V</div><strong>Vinci User</strong></div>
+            <div class="start-body">
+                <div class="start-programs">
+                    <button data-window="browser-window"><span class="program-icon browser-art">◎</span>Internet</button>
+                    <button data-window="computer-window"><span class="program-icon computer-art">▣</span>Computer</button>
+                    <button data-window="documents-window"><span class="program-icon folder-art">▰</span>Documents</button>
+                    <button data-window="notes-window"><span class="program-icon notes-art">✎</span>Notepad</button>
+                    <button data-window="calculator-window"><span class="program-icon calculator-art">▦</span>Calculator</button>
+                </div>
+                <div class="start-links"><button>Control Panel</button><button>Help and Support</button></div>
+            </div>
+            <div class="start-footer"><button class="power-button" id="power-button">⏻</button><span>Shut down</span><button class="search-start" aria-label="Search">⌕</button></div>
+        </div>
+    </main>
+    <footer class="taskbar" aria-label="Application dock">
+        <button class="start-button" id="start-button" aria-label="Open Start menu"><span class="windows-orb">V</span></button>
+        <div class="taskbar-apps"><button class="taskbar-app active" data-window="welcome-window" aria-label="VinciOS Welcome Center"><span>V</span><small>Home</small></button><button class="taskbar-app" data-window="browser-window" aria-label="Internet Explorer"><span>e</span><small>Browser</small></button><button class="taskbar-app" data-window="notes-window" aria-label="Notepad"><span>✎</span><small>Notes</small></button><button class="taskbar-app" data-window="calculator-window" aria-label="Calculator"><span>▦</span><small>Calculator</small></button></div>
+        <div class="system-tray"><span class="tray-icon">⌃</span><span class="network-icon">◉</span><time id="clock">12:00</time></div>
+    </footer>
+    <script>
+        const startButton = document.getElementById('start-button');
+        const startMenu = document.getElementById('start-menu');
+        const windows = document.querySelectorAll('.window');
+
+        function openWindow(id) {
+            windows.forEach((windowElement) => {
+                windowElement.hidden = windowElement.id !== id;
+            });
+            document.querySelectorAll('.taskbar-app').forEach((app) => app.classList.toggle('active', app.dataset.window === id));
+            startMenu.hidden = true;
+        }
+
+        document.querySelectorAll('[data-window]').forEach((button) => {
+            button.addEventListener('click', () => openWindow(button.dataset.window));
+        });
+
+        document.querySelectorAll('.close').forEach((button) => {
+            button.addEventListener('click', () => button.closest('.window').hidden = true);
+        });
+
+        document.querySelectorAll('.minimize').forEach((button) => {
+            button.addEventListener('click', () => button.closest('.window').hidden = true);
+        });
+
+        document.querySelectorAll('.maximize').forEach((button) => {
+            button.addEventListener('click', () => button.closest('.window').classList.toggle('maximized'));
+        });
+
+        startButton.addEventListener('click', () => startMenu.hidden = !startMenu.hidden);
+        document.getElementById('power-button').addEventListener('click', () => {
+            document.querySelector('.desktop').classList.toggle('powered-off');
+        });
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.start-menu, .start-button')) startMenu.hidden = true;
+        });
+
+        const calculatorDisplay = document.getElementById('calculator-display');
+        let calculatorValue = '0';
+        let calculatorStored = null;
+        let calculatorOperator = null;
+        document.querySelectorAll('[data-calc]').forEach((key) => {
+            key.addEventListener('click', () => {
+                const action = key.dataset.calc;
+                const value = key.textContent;
+                if (action === 'clear') { calculatorValue = '0'; calculatorStored = null; calculatorOperator = null; }
+                else if (action === 'number') calculatorValue = calculatorValue === '0' && value !== '.' ? value : calculatorValue + value;
+                else if (action === 'operator') { calculatorStored = Number(calculatorValue); calculatorOperator = value; calculatorValue = '0'; }
+                else if (action === 'back') calculatorValue = calculatorValue.length > 1 ? calculatorValue.slice(0, -1) : '0';
+                else if (action === 'equals' && calculatorOperator) {
+                    const current = Number(calculatorValue);
+                    const result = calculatorOperator === '+' ? calculatorStored + current : calculatorOperator === '−' ? calculatorStored - current : calculatorOperator === '×' ? calculatorStored * current : calculatorStored / current;
+                    calculatorValue = String(Number.isFinite(result) ? result : 0); calculatorStored = null; calculatorOperator = null;
+                }
+                calculatorDisplay.value = calculatorValue;
+            });
+        });
+
+        function updateClock() {
+            const now = new Date();
+            const time = new Intl.DateTimeFormat([], { hour: 'numeric', minute: '2-digit' }).format(now);
+            document.getElementById('clock').textContent = time;
+            document.getElementById('top-clock').textContent = new Intl.DateTimeFormat([], { weekday: 'short', hour: 'numeric', minute: '2-digit' }).format(now);
+        }
+        updateClock();
+        setInterval(updateClock, 30000);
+    </script>
+</body>
+</html>
