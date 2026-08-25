@@ -1,0 +1,156 @@
+/* Windows 95 Theme */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #008080;
+    color: #000000;
+    font-family: "MS Sans Serif", "Arial", sans-serif;
+    font-style: normal;
+}
+
+/* Logo */
+
+.logo {
+    width: 120px;
+    height: auto;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+/* Main title */
+
+h1 {
+    margin: 100px auto 5px auto;
+    width: fit-content;
+
+    background: #c0c0c0;
+    color: #000000;
+
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-right: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+
+    padding: 8px 35px;
+
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Description */
+
+body > p {
+    color: #000000;
+    background: #c0c0c0;
+
+    width: fit-content;
+    margin: 15px auto;
+    padding: 5px 10px;
+
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+}
+
+/* Buttons container */
+
+.Links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px;
+}
+
+/* Windows 95 buttons */
+
+button {
+    min-width: 110px;
+    padding: 5px 15px;
+
+    background: #c0c0c0;
+    color: #000000;
+
+    font-family: "MS Sans Serif", Arial, sans-serif;
+    font-size: 14px;
+
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+
+    cursor: pointer;
+}
+
+button:active {
+    border-top: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+
+    padding-top: 6px;
+    padding-left: 16px;
+}
+
+/* Theme button */
+
+#themeButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    min-width: 140px;
+}
+
+/* Reviews window */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 10px;
+    flex-wrap: wrap;
+
+    margin: 30px auto;
+    max-width: 1100px;
+}
+
+/* Individual review */
+
+.revieuw {
+    width: 250px;
+    min-height: 130px;
+
+    background: #c0c0c0;
+
+    padding: 10px;
+
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-right: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+
+    text-align: left;
+}
+
+.revieuw p {
+    margin: 8px;
+}
+
+/* Username */
+
+#username {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    color: white;
+    font-size: 12px;
+}

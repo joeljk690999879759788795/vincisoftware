@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>VinciSoftware</title>
-     <link rel="stylesheet" href="css/index.css">
+     <link id="theme-css" rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -23,6 +23,7 @@
             <button class="exit">exit</button>
         </a>        
     </div>
+    <button class="themeswitch" id="themeButton" onclick="changeTheme()">Retro Theme</button>
     <div class="Links">
         <a href="/pages/404.html">
             <button>vinci debt</button>
@@ -45,9 +46,36 @@
         <p>ben america</p>
     </div>
     <div class="revieuw">
-        <p>vinci is awesome they helped me with a lot of difrend things</p>
+        <p>i have a rtx 3050 and a vape</p>
         <p>bertus de boer</p>
     </div>
  </div>
 </body>
+<script>
+function changeTheme() {
+    const css = document.getElementById("theme-css");
+    const button = document.getElementById("themeButton");
+
+    if (css.getAttribute("href") === "css/index.css") {
+        css.setAttribute("href", "css/retro.css");
+        button.textContent = "Standard Theme";
+        localStorage.setItem("theme", "retro");
+    } else {
+        css.setAttribute("href", "css/index.css");
+        button.textContent = "Retro Theme";
+        localStorage.setItem("theme", "standard");
+    }
+}
+
+window.onload = function() {
+    const theme = localStorage.getItem("theme");
+    const css = document.getElementById("theme-css");
+    const button = document.getElementById("themeButton");
+
+    if (theme === "retro") {
+        css.setAttribute("href", "css/retro.css");
+        button.textContent = "Standard Theme";
+    }
+};
+</script>
 </html>
