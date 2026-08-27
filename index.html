@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="images/vincisoftware.png">
 </head>
 <body>
-    <img src="images/vincisoftware.png" class="logo">
+    <img id="site-logo" src="images/vincisoftware.png" class="logo">
      <script src="https://keepandroidopen.org/banner.js"></script>
     <span id="username"></span>
     <script>
@@ -71,6 +71,7 @@ const themeSelect = document.getElementById("themeSelect");
 function loadTheme(theme) {
     if (theme === "retro") {
         themeCSS.href = "css/retro.css";
+        document.getElementById("site-logo").src = "images/vinci_98.png";
     } 
     
     else if (theme === "v7mode") {
@@ -79,6 +80,7 @@ function loadTheme(theme) {
     
     else {
         themeCSS.href = "css/index.css";
+        document.getElementById("site-logo").src = "images/vincisoftware.png";
     }
 
     localStorage.setItem("theme", theme);
