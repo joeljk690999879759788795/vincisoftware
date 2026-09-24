@@ -1,4 +1,4 @@
-const end = new Date("2026-08-29T11:30:00").getTime();
+const end = new Date("2026-10-19T11:13:00").getTime();
 
 setInterval(() => {
     const time = Math.max(0, end - Date.now());
