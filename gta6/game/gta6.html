@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Game Menu</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pridi:wght@400;700&family=Rajdhani:wght@300;400;600&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #e15bfc;
+  --gold-bright: #c58dc7;
+  --gold-dim: rgba(137, 3, 150, 0.4);
+  --gold-glow: rgba(212,160,23,0.15);
+  --white: #ffffff;
+  --off-white: rgba(255,255,255,0.85);
+  --overlay-dark: rgba(0,0,0,0.75);
+  --menu-bg: rgba(4,4,6,0.97);
+  --input-bg: #0d0d0f;
+  --border: rgba(61, 1, 63, 0.3);
+  --border-subtle: rgba(255,255,255,0.08);
+  --text-muted: rgba(255,255,255,0.5);
+}
+
+body {
+  overflow: hidden;
+  background: #000;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('Capture.PNG') center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 72px;
+  transition: opacity 0.8s ease;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.0) 30%,
+    rgba(0,0,0,0.55) 70%,
+    rgba(0,0,0,0.82) 100%
+  );
+}
+
+.overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.45) 100%);
+}
+
+/* ─── LOGO ─── */
+.logo {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+  user-select: none;
+}
+
+.logo img {
+  width: clamp(180px, 25vw, 340px);
+  display: block;
+  filter: drop-shadow(0 0 30px rgba(225, 91, 252, 0.35));
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(225, 91, 252, 0.3)); }
+  50%       { filter: drop-shadow(0 0 50px rgba(225, 91, 252, 0.65)); }
+}
+
+.beta-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 4px 14px;
+  background: var(--gold-glow);
+}
+
+/* ─── BUTTONS ─── */
+.btn-group {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 220px;
+}
+
+.play-btn,
+.settings-btn {
+  width: 100%;
+  padding: 15px 0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.play-btn {
+  background: var(--gold);
+  color: #000;
+  border: none;
+}
+
+.play-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.18), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.play-btn:hover::before { opacity: 1; }
+.play-btn:hover { background: var(--gold-bright); }
+.play-btn:active { transform: scale(0.98); }
+
+.settings-btn {
+  background: transparent;
+  color: var(--off-white);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.settings-btn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
+  background: var(--gold-glow);
+}
+
+.settings-btn:active { transform: scale(0.98); }
+
+.hint {
+  z-index: 2;
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ─── SETTINGS OVERLAY ─── */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 990;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-overlay.open { display: flex; }
+
+.settings-menu {
+  width: 540px;
+  max-width: 94vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--menu-bg);
+  border: 1px solid var(--border);
+  padding: 32px 28px 24px;
+  color: var(--white);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) transparent;
+}
+
+.settings-menu::-webkit-scrollbar { width: 4px; }
+.settings-menu::-webkit-scrollbar-track { background: transparent; }
+.settings-menu::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.settings-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.close-icon {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  transition: color 0.2s;
+  padding: 2px 4px;
+}
+.close-icon:hover { color: var(--white); }
+
+.form-section { margin-bottom: 22px; }
+
+.section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  background: var(--input-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e15bfc'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color: var(--white);
+  border: 1px solid var(--border-subtle);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.field select:focus { outline: none; border-color: var(--gold-dim); }
+.field select:hover { border-color: rgba(255,255,255,0.18); }
+
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 20px 0;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.btn-save {
+  padding: 13px;
+  background: var(--gold);
+  color: #000;
+  border: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-save:hover { background: var(--gold-bright); }
+.btn-save:active { transform: scale(0.98); }
+
+.btn-close {
+  padding: 13px;
+  background: transparent;
+  color: var(--off-white);
+  border: 1px solid var(--border-subtle);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.btn-close:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
+.btn-close:active { transform: scale(0.98); }
+
+.fade-out { opacity: 0; }
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="./muziek.mp3" type="audio/mpeg">
+</audio>
+
+<div class="screen" id="screen">
+  <div class="overlay"></div>
+
+  <div class="logo">
+    <img src="./logo.png" alt="GTA VI">
+    <div class="beta-tag">Beta</div>
+  </div>
+
+  <div class="btn-group">
+    <button class="play-btn" onclick="startGame()">Play</button>
+    <button class="settings-btn" onclick="openSettings()">⚙&nbsp; Settings</button>
+  </div>
+
+  <div class="hint">Press Enter to start</div>
+</div>
+
+<div class="settings-overlay" id="settingsOverlay" onclick="overlayClick(event)">
+  <div class="settings-menu" id="settingsMenu">
+
+    <div class="settings-header">
+      <span class="settings-title">Graphics Settings</span>
+      <button class="close-icon" onclick="closeSettings()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="form-section">
+      <div class="section-label">Display</div>
+      <div class="row">
+        <div class="field">
+          <label for="resolution">Resolution</label>
+          <select id="resolution">
+            <option>1280×720</option>
+            <option>1920×1080</option>
+            <option selected>2560×1440</option>
+            <option>3840×2160</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="display">Display Mode</label>
+          <select id="display">
+            <option selected>Fullscreen</option>
+            <option>Windowed</option>
+            <option>Borderless</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="form-section">
+      <div class="section-label">Quality</div>
+      <div class="row">
+        <div class="field">
+          <label for="quality">Graphics Quality</label>
+          <select id="quality">
+            <option>Low</option>
+            <option>Medium</option>
+            <option selected>High</option>
+            <option>Ultra</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="aa">Anti-Aliasing</label>
+          <select id="aa">
+            <option>Off</option>
+            <option selected>FXAA</option>
+            <option>TAA</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="shadows">Shadows</label>
+          <select id="shadows">
+            <option>Off</option>
+            <option selected>On</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="reflections">Reflections</label>
+          <select id="reflections">
+            <option>Off</option>
+            <option selected>On</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="form-section">
+      <div class="section-label">Performance</div>
+      <div class="row">
+        <div class="field">
+          <label for="fps">FPS Limit</label>
+          <select id="fps">
+            <option>30</option>
+            <option selected>60</option>
+            <option>120</option>
+            <option>144</option>
+            <option>240</option>
+            <option>Unlimited</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="vsync">V-Sync</label>
+          <select id="vsync">
+            <option>Off</option>
+            <option selected>On</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="motion">Motion Blur</label>
+          <select id="motion">
+            <option selected>Off</option>
+            <option>Low</option>
+            <option>High</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-save" onclick="saveSettings()">Save</button>
+      <button class="btn-close" onclick="closeSettings()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const bgm = document.getElementById("bgm");
+let audioStarted = false;
+
+function startAudio() {
+  if (!audioStarted) {
+    bgm.volume = 0.6;
+    bgm.play().catch(() => {});
+    audioStarted = true;
+  }
+}
+
+document.addEventListener("click", startAudio, { once: true });
+document.addEventListener("keydown", startAudio, { once: true });
+
+function startGame() {
+  document.getElementById("screen").classList.add("fade-out");
+  setTimeout(() => { window.location.href = "game.html"; }, 800);
+}
+
+function openSettings() {
+  document.getElementById("settingsOverlay").classList.add("open");
+}
+
+function closeSettings() {
+  document.getElementById("settingsOverlay").classList.remove("open");
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById("settingsOverlay")) closeSettings();
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeSettings();
+  if (e.key === "Enter" && !document.getElementById("settingsOverlay").classList.contains("open")) startGame();
+});
+
+function saveSettings() {
+  const ids = ["resolution","display","quality","shadows","reflections","aa","vsync","motion","fps"];
+  const s = Object.fromEntries(ids.map(id => [id, document.getElementById(id).value]));
+  localStorage.setItem("game_settings", JSON.stringify(s));
+  closeSettings();
+}
+
+window.onload = () => {
+  const s = JSON.parse(localStorage.getItem("game_settings"));
+  if (!s) return;
+  Object.entries(s).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+};
+</script>
+
+</body>
+</html>

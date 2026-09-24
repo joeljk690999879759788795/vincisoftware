@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Creator</title>
+<style>
+  button {
+    padding: 10px 15px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  button:hover {
+    background-color: #333;
+    color: #f5f5f5;
+  }
+  #player {
+    border: 2px solid #333;
+    border-radius: 4px;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+<h1 id="title"></h1>
+<div id="list"></div>
+<audio id="player" controls loop style="display:block;margin-top:12px;"></audio>
+
+<script>
+const params = new URLSearchParams(location.search);
+const creator = (params.get('p') || '').replace(/[^a-zA-Z0-9-_]/g,'');
+const title = document.getElementById('title');
+const list = document.getElementById('list');
+const player = document.getElementById('player');
+
+if (!creator) {
+  title.textContent = 'Creator not specified';
+  list.textContent = 'No creator specified.';
+} else {
+  title.textContent = creator;
+
+  // creators.json must be kept up-to-date in the repo. Format: { "Micha": ["a.mp3","b.mp3"], ... }
+  fetch('creators.json')
+    .then(r => r.json())
+    .then(data => {
+      const creatorKey = Object.keys(data).find(k => k.toLowerCase() === creator.toLowerCase())
+        || Object.keys(data).find(k => k.toLowerCase().endsWith(creator.toLowerCase()))
+        || Object.keys(data).find(k => creator.toLowerCase().endsWith(k.toLowerCase()));
+      const actualCreator = creatorKey || creator;
+      if (creatorKey && creatorKey !== creator) {
+        title.textContent = creatorKey;
+        history.replaceState(null, '', '?p=' + encodeURIComponent(creatorKey));
+      }
+
+      const files = Array.isArray(data[actualCreator]) ? data[actualCreator] : [];
+      if (!files.length) {
+        list.textContent = 'No audio files found.';
+        return;
+      }
+
+        const buttons = files.map(name => {
+         const btn = document.createElement('button');
+          btn.textContent = name;
+          btn.style.display = 'block';
+          btn.style.margin = '6px 0';
+          btn.addEventListener('click', () => {
+            const url = 'Creators/' + encodeURIComponent(actualCreator) + '/' + encodeURIComponent(name);
+            player.src = url;
+            player.play().catch(() => {});
+            history.replaceState(null, '', '?p=' + encodeURIComponent(actualCreator) + '&t=' + encodeURIComponent(name));
+          });
+          list.appendChild(btn);
+          return btn;
+        });
+
+        const t = params.get('t');
+        if (t) {
+          const index = files.indexOf(t);
+          if (index !== -1) {
+            buttons[index].click();
+          }
+        }
+      })
+      .catch(() => {
+        list.textContent = 'Could not load creators.json';
+      });
+}
+</script>
+</body>
+</html>

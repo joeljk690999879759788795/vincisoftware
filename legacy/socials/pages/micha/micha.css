@@ -1,0 +1,55 @@
+/* 1. Import VT323 at the VERY TOP of the file */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    background-color: rgb(177, 208, 219);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'VT323', monospace;
+
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-top: 20px;
+
+    /* 3. Ensure crisp pixels (disable smoothing) */
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-size: 48px;
+}
+
+.container,
+.section {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+@media (max-width: 768px) {
+
+    .container,
+    .section {
+        flex-direction: column;
+        /* Stack items vertically */
+        width: 90%;
+        /* Add some breathing room on sides */
+        margin: 0 auto;
+        /* Center the content */
+    }
+
+    /* Make images full width */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Make navigation buttons stack or become a hamburger menu */
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GTA VI - Gameplay</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  overflow: hidden;
+  background: #000;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── ERROR POPUP ─── */
+#errorBox {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+}
+
+.error-panel {
+  width: 480px;
+  max-width: 92vw;
+  background: rgba(4,4,6,0.97);
+  border: 1px solid rgba(225,91,252,0.4);
+  padding: 36px 32px 28px;
+  text-align: center;
+  color: #fff;
+}
+
+.error-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.error-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #e15bfc;
+  margin-bottom: 14px;
+}
+
+.error-msg {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.error-specs {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 28px;
+  line-height: 1.8;
+}
+
+.error-specs span {
+  color: rgba(225,91,252,0.7);
+}
+
+.btn-back {
+  padding: 13px 40px;
+  background: #e15bfc;
+  color: #000;
+  border: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-back:hover { background: #c58dc7; }
+.btn-back:active { transform: scale(0.97); }
+</style>
+</head>
+<body>
+
+<video id="gameplay" muted playsinline>
+  <source src="play.mp4" type="video/mp4">
+</video>
+
+<div id="errorBox">
+  <div class="error-panel">
+    <div class="error-icon">⚠️</div>
+    <div class="error-title">System Requirements Not Met</div>
+    <div class="error-msg">
+      Your PC does not meet the minimum requirements to run Grand Theft Auto VI.
+      The game cannot continue.
+    </div>
+    <div class="error-specs">
+      Minimum requirements:<br>
+      GPU &nbsp;→ &nbsp;<span>NVIDIA RTX 2070 / AMD RX 6700 XT</span><br>
+      CPU &nbsp;→ &nbsp;<span>Intel i7-9700K / AMD Ryzen 7 3700X</span><br>
+      RAM &nbsp;→ &nbsp;<span>16 GB</span><br>
+      VRAM &nbsp;→ &nbsp;<span>8 GB</span>
+    </div>
+    <button class="btn-back" onclick="window.location.href='gta6.html'">Back to Menu</button>
+  </div>
+</div>
+
+<script>
+const video = document.getElementById("gameplay");
+const errorBox = document.getElementById("errorBox");
+
+video.play();
+
+video.addEventListener("ended", () => {
+  errorBox.style.display = "flex";
+});
+</script>
+
+</body>
+</html>

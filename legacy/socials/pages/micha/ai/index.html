@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styl.css" />
+</head>
+
+<body>
+
+  <div class="console">
+
+    <header class="console__header">
+      <div class="header__id">
+        <span class="header__mark">⌁</span>
+        <div>
+          <h1>advanced ai girlfriend</h1>
+          <p class="header__sub">talking to your new ai girlfriend</p>
+        </div>
+      </div>
+
+      <div class="status" id="status">
+        <span class="status__dot" id="statusDot"></span>
+        <span class="status__label" id="statusLabel">checking connection…</span>
+      </div>
+    </header>
+
+    <main class="log" id="log">
+      <div class="log__empty" id="logEmpty">
+        <p>No messages yet.</p>
+        <p class="log__hint">Send something to get started.</p>
+      </div>
+    </main>
+
+    <form class="composer" id="composer">
+      <textarea id="messageInput" placeholder="Type a message…" rows="1" autocomplete="off"></textarea>
+      <button type="submit" id="sendBtn" aria-label="Send message">
+        <span class="send-icon">↵</span>
+      </button>
+    </form>
+
+  </div>
+  <div style="display:flex;align-items:flex-start;gap:20px;">
+    <img src="./ai.jpg" alt="Vinci Phone" style="width:700px;height: 700px;;">
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

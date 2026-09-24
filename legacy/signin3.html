@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="css/index-styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <a href="index.html">
+        <button>Exit</button>
+    </a>
+
+    <!-- Sign In Form -->
+    <div id="signin-section">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="User" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Password" required><br><br>
+        <input type="submit" value="Sign In" onclick="signIn()">
+        <br><br>
+        <a href="#" onclick="switchTo('signup')">Don't have an account? Sign up</a>
+    </div>
+
+    <!-- Sign Up Form -->
+    <div id="signup-section" style="display:none">
+        <label for="signup-username">Username:</label>
+        <input type="text" id="signup-username" placeholder="User" required><br><br>
+        <label for="signup-email">Email:</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" required><br><br>
+        <label for="signup-password">Password:</label>
+        <input type="password" id="signup-password" placeholder="Password" required><br><br>
+        <input type="submit" value="Sign Up" onclick="signUp()">
+        <br><br>
+        <a href="#" onclick="switchTo('signin')">Already have an account? Sign in</a>
+    </div>
+
+    <p id="message"></p>
+
+    <img src="./Images/e.png" alt="Screenshot">
+    <h4>if you do not sign up this monster will consume your soul</h4>
+
+    <script>
+        const SUPABASE_URL = 'https://etpdeqsdkrinzrgmgcum.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0cGRlcXNka3JpbnpyZ21nY3VtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3NTE2NjYsImV4cCI6MjA5NjMyNzY2Nn0.bAEjm4cKkxfgMbDUeItMVjnmbZDaBM9CmKt9SX98j8Y';
+
+        const { createClient } = supabase;
+        const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        function switchTo(section) {
+            document.getElementById('signin-section').style.display = section === 'signin' ? 'block' : 'none';
+            document.getElementById('signup-section').style.display = section === 'signup' ? 'block' : 'none';
+            document.getElementById('message').textContent = '';
+        }
+
+        async function signIn() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                document.getElementById('message').textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            const { data: profile, error: lookupError } = await sb
+                .from('profiles')
+                .select('email')
+                .eq('username', username)
+                .single();
+
+            if (lookupError || !profile) {
+                document.getElementById('message').textContent = 'Username not found.';
+                return;
+            }
+
+            const { data, error } = await sb.auth.signInWithPassword({
+                email: profile.email,
+                password
+            });
+
+            if (error) {
+                document.getElementById('message').textContent = error.message;
+            } else {
+                localStorage.setItem('username', username);
+                document.getElementById('message').textContent = 'Signed in! Redirecting...';
+                window.location.href = 'index.html';
+            }
+        }
+
+        async function signUp() {
+            const username = document.getElementById('signup-username').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value;
+
+            if (!username || !email || !password) {
+                document.getElementById('message').textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            const { data, error } = await sb.auth.signUp({
+                email,
+                password,
+                options: { data: { username } }
+            });
+
+            if (error) {
+                document.getElementById('message').textContent = error.message;
+            } else if (data.user && data.user.identities && data.user.identities.length === 0) {
+                document.getElementById('message').textContent = 'Email already in use.';
+            } else {
+                await sb.from('profiles').insert({ id: data.user.id, username, email });
+                localStorage.setItem('username', username);
+                document.getElementById('message').textContent = 'Account created! Check your email to confirm.';
+            }
+        }
+    </script>
+</body>
+
+</html>
