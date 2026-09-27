@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vincify</title>
-         <link id="theme-css" rel="stylesheet" href="../css/index.css">
+    <link id="theme-css" rel="stylesheet" href="../css/index.css">
 </head>
 <style>
     .track {
-  display: grid;
-  grid-template-columns: 1fr 160px;  /* player | title */
-  align-items: center;
-  gap: .75rem;
-}
+        display: grid;
+        grid-template-columns: 1fr 160px;
+        align-items: center;
+        gap: .75rem;
+    }
 </style>
 <body>
     <select id="themeSelect">
@@ -21,56 +21,77 @@
         <option value="v7mode">V7 mode</option>
     </select>
 
-
-
-<div class="player-list">
-  
-  <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/bertus vapecloud.mp3"></audio>
-    <label for="t1" class="track-name">bertus vapecloud</label>
-  </div>
-  
-  <div class="track">
-    <audio id="t2" controls preload="metadata" src="./micha/aniek manjefiek.mp3"></audio>
-    <label for="t2" class="track-name">aniek manjefiek</label>
-  </div>
-  
-  <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/gigi-gigi-67.mp3"></audio>
-    <label for="t1" class="track-name">gigi gigi 67</label>
-  </div>
-  
-  <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/gooning-micha-1964-edition.mp3"></audio>
-    <label for="t1" class="track-name">joel the goon</label>
-  </div>
- 
-  <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/Joel on Windows.mp3"></audio>
-    <label for="t1" class="track-name">joel on windows</label>
-  </div>
-  
-  <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/Making Trouble in the Best Way.mp3"></audio>
-    <label for="t1" class="track-name">making trouble in the best way</label>
-  </div>
-  
-  <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/Micha Arch dih.mp3"></audio>
-    <label for="t1" class="track-name">micha arch dih</label>
-    </div>
+    <div class="player-list">
+      
+      <div class="track">
+        <audio id="t1" controls preload="metadata" src="./micha/bertus vapecloud.mp3"></audio>
+        <label for="t1" class="track-name">bertus vapecloud</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t2" controls preload="metadata" src="./micha/aniek manjefiek.mp3"></audio>
+        <label for="t2" class="track-name">aniek manjefiek</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t3" controls preload="metadata" src="./micha/gigi-gigi-67.mp3"></audio>
+        <label for="t3" class="track-name">gigi gigi 67</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t4" controls preload="metadata" src="./micha/gooning-micha-1964-edition.mp3"></audio>
+        <label for="t4" class="track-name">joel the goon</label>
+      </div>
      
-    <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/Paper Dress.mp3"></audio>
-    <label for="t1" class="track-name">paper dress</label>
-    
-    <div class="track">
-    <audio id="t1" controls preload="metadata" src="./micha/special-island-gigedy-island.mp3"></audio>
-    <label for="t1" class="track-name">special island gigady island</label>
-  </div>
+      <div class="track">
+        <audio id="t5" controls preload="metadata" src="./micha/Joel on Windows.mp3"></audio>
+        <label for="t5" class="track-name">joel on windows</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t6" controls preload="metadata" src="./micha/Making Trouble in the Best Way.mp3"></audio>
+        <label for="t6" class="track-name">making trouble in the best way</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t7" controls preload="metadata" src="./micha/Micha Arch dih.mp3"></audio>
+        <label for="t7" class="track-name">micha arch dih</label>
+      </div>
+       
+      <div class="track">
+        <audio id="t8" controls preload="metadata" src="./micha/Paper Dress.mp3"></audio>
+        <label for="t8" class="track-name">paper dress</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t9" controls preload="metadata" src="./micha/special-island-gigedy-island.mp3"></audio>
+        <label for="t9" class="track-name">special island gigady island</label>
+      </div>
 
-  </div>
-</div>
+      <div class="track">
+        <audio id="t10" controls preload="metadata" src="./micha/TheVinciTeam.mp3"></audio>
+        <label for="t10" class="track-name">powerdirector v7</label>
+      </div>
+      
+      <div class="track">
+        <audio id="t11" controls preload="metadata" src="./micha/Two Wild Hearts.mp3"></audio>
+        <label for="t11" class="track-name">2 wild hearts</label>
+      </div>
+
+      <div class="track">
+        <audio id="t12" controls preload="metadata" src="./micha/why-android-is-better.mp3"></audio>
+        <label for="t12" class="track-name">android and linux harmony</label>
+      </div>
+
+      <div class="track">
+        <audio id="t13" controls preload="metadata" src="./micha/wikipedia-nederland.mp3"></audio>
+        <label for="t13" class="track-name">wikipedia protestanse kerk</label>
+      </div>
+
+    </div>
+    <a href="./fy.html">
+      <button>back</button>
+    </a>
 </body>
 <script>
 const themeCSS = document.getElementById("theme-css");
@@ -81,16 +102,13 @@ function loadTheme(theme) {
         themeCSS.href = "../css/retro.css";
         document.getElementById("site-logo").src = "images/vinci_98.png";
     } 
-    
     else if (theme === "v7mode") {
         themeCSS.href = "../css/v7mode.css";
     } 
-    
     else {
         themeCSS.href = "../css/index.css";
         document.getElementById("site-logo").src = "images/vincisoftware.png";
     }
-
     localStorage.setItem("theme", theme);
 }
 
@@ -99,7 +117,6 @@ themeSelect.addEventListener("change", function () {
 });
 
 const savedTheme = localStorage.getItem("theme");
-
 if (savedTheme) {
     themeSelect.value = savedTheme;
     loadTheme(savedTheme);
