@@ -6,11 +6,11 @@ function loadTheme(theme) {
         themeCSS.href = "../css/retro.css";
     } else if (theme === "v7mode") {
         themeCSS.href = "../css/v7mode.css";
+    } else if (theme === "no") {
+        themeCSS.href = "";
     } else {
         themeCSS.href = "../css/index.css";
     }
-     } else if (theme === "no") {
-        themeCSS.href = "";
 
     localStorage.setItem("theme", theme);
 }
@@ -23,4 +23,4 @@ const savedTheme = localStorage.getItem("theme");
 if (savedTheme) {
     themeSelect.value = savedTheme;
     loadTheme(savedTheme);
-}   
+}
