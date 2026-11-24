@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinci Media</title>
+    <style>
+        :root {
+            --blue: #3b5998;
+            --blue-dark: #263d6b;
+            --blue-light: #dce6f5;
+            --line: #9aaec8;
+            --paper: #f1f3f8;
+            --text: #222;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 22px 28px 40px;
+            background:
+                linear-gradient(180deg, #e8edf6 0, #f7f8fb 180px, #e9edf4 100%);
+            color: var(--text);
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .page-wrap {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .site-heading {
+            padding: 15px 18px 13px;
+            color: white;
+            background: linear-gradient(#6685bd, #3b5998 55%, #304b80);
+            border: 1px solid #263d6b;
+            border-bottom: 3px solid #263d6b;
+            box-shadow: 0 1px 3px #9ba8bc;
+        }
+
+        .site-heading h1 {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 30px;
+            letter-spacing: -1px;
+            text-shadow: 1px 1px #263d6b;
+        }
+
+        .site-heading p {
+            margin: 5px 0 0;
+            color: #e5edfb;
+            font-size: 12px;
+        }
+
+        .welcome-strip {
+            margin: 12px 0 16px;
+            padding: 8px 11px;
+            background: #fff;
+            border: 1px solid #b8c5d8;
+            color: #435574;
+            box-shadow: 0 1px 2px #d4dbe6;
+        }
+
+        .feed-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 220px;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .section-bar {
+            margin: 0 0 10px;
+            padding: 7px 10px;
+            color: #fff;
+            background: linear-gradient(#7794c5, #4d6fa8);
+            border: 1px solid #385887;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .post {
+            margin-bottom: 16px;
+            background: #fff;
+            border: 1px solid #aebbd0;
+            box-shadow: 0 1px 3px rgba(37, 57, 88, .14);
+        }
+
+        .post-top {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 12px;
+            background: #f8faff;
+            border-bottom: 1px solid #d4dce9;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            flex: 0 0 48px;
+            border: 2px solid white;
+            outline: 1px solid #9eacc2;
+            border-radius: 3px;
+            object-fit: cover;
+            background: #dce6f5;
+        }
+
+        .poster-name {
+            margin: 0 0 4px;
+            color: #2f5189;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .post-meta {
+            color: #7b8493;
+            font-size: 11px;
+        }
+
+        .post-content {
+            padding: 14px;
+        }
+
+        .post-content h2 {
+            margin: 0 0 7px;
+            color: #273e66;
+            font-size: 19px;
+        }
+
+        .post-content p {
+            margin: 0 0 12px;
+            line-height: 1.5;
+        }
+
+        .post-image {
+            display: block;
+            width: 100%;
+            max-height: 620px;
+            object-fit: contain;
+            object-position: center;
+            background: #e7eaf0;
+            border: 1px solid #c5ccda;
+        }
+
+        .post-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            padding: 9px 12px;
+            background: #f4f6fa;
+            border-top: 1px solid #d4dce9;
+        }
+
+        .old-button {
+            display: inline-block;
+            padding: 5px 10px;
+            color: #294b80;
+            background: linear-gradient(#fff, #e5ebf5);
+            border: 1px solid #9aabc4;
+            border-radius: 3px;
+            font: bold 11px Tahoma, sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .old-button:hover {
+            background: #dce6f5;
+            border-color: #627fae;
+        }
+
+        .side-card {
+            margin-bottom: 13px;
+            background: #fff;
+            border: 1px solid #aebbd0;
+            box-shadow: 0 1px 3px rgba(37, 57, 88, .12);
+        }
+
+        .side-card h3 {
+            margin: 0;
+            padding: 7px 9px;
+            color: #fff;
+            background: linear-gradient(#7794c5, #4d6fa8);
+            border-bottom: 1px solid #385887;
+            font-size: 12px;
+        }
+
+        .side-card-body {
+            padding: 10px;
+            color: #515d70;
+            line-height: 1.5;
+        }
+
+        .side-card-body a {
+            color: #315a99;
+        }
+
+        .online {
+            color: #26823c;
+            font-weight: bold;
+        }
+
+        .tiny-note {
+            margin-top: 12px;
+            color: #8993a2;
+            text-align: center;
+            font-size: 10px;
+        }
+
+
+        .composer {
+            margin-bottom: 16px;
+            background: #fff;
+            border: 1px solid #aebbd0;
+            box-shadow: 0 1px 3px rgba(37, 57, 88, .14);
+        }
+
+        .composer h2 {
+            margin: 0;
+            padding: 7px 10px;
+            color: #fff;
+            background: linear-gradient(#7794c5, #4d6fa8);
+            border-bottom: 1px solid #385887;
+            font-size: 14px;
+        }
+
+        .composer-body { padding: 12px; }
+
+        .composer input[type="text"],
+        .composer textarea {
+            display: block;
+            width: 100%;
+            margin: 0 0 9px;
+            padding: 9px;
+            border: 1px solid #b7c4d7;
+            border-radius: 2px;
+            background: #fbfcff;
+            color: #222;
+            font: 13px Tahoma, Verdana, sans-serif;
+        }
+
+        .composer textarea {
+            min-height: 85px;
+            resize: vertical;
+        }
+
+        .composer input[type="file"] {
+            display: block;
+            margin: 9px 0 12px;
+            max-width: 100%;
+            font: 11px Tahoma, sans-serif;
+        }
+
+        .composer-submit {
+            padding: 7px 15px;
+            color: #fff;
+            background: linear-gradient(#6685bd, #3b5998);
+            border: 1px solid #263d6b;
+            border-radius: 3px;
+            font: bold 12px Tahoma, sans-serif;
+            cursor: pointer;
+        }
+
+        .composer-submit:hover { background: #294b80; }
+
+        .composer-help {
+            display: block;
+            margin-top: 8px;
+            color: #7b8493;
+            font-size: 10px;
+        }
+
+        @media (max-width: 850px) {
+            body { padding: 14px; }
+            .feed-layout { grid-template-columns: 1fr; }
+            .right-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+        }
+
+        @media (max-width: 520px) {
+            body { padding: 9px; }
+            .site-heading h1 { font-size: 25px; }
+            .right-column { display: block; }
+            .post-image { max-height: 480px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-wrap">
+        <header class="site-heading">
+            <h1>vinci media</h1>
+            <p>posts from vinci straight to your doorstep</p>
+        </header>
+
+        <div class="welcome-strip">
+            <strong>Welcome back!</strong> Check out what's happening around Vinci Media.
+        </div>
+
+        <div class="feed-layout">
+            <section class="main-column" aria-label="Latest posts">
+                <h2 class="section-bar">Latest updates</h2>
+
+                <section class="composer">
+                    <h2>✎ Create a new post</h2>
+                    <div class="composer-body">
+                        <form id="post-form">
+                            <input id="post-title" type="text" placeholder="Post title (optional)">
+                            <textarea id="post-text" placeholder="What's on your mind?"></textarea>
+                            <label for="post-image-file"><strong>Add a photo:</strong></label>
+                            <input id="post-image-file" type="file" accept="image/*">
+                            <button class="composer-submit" type="submit">Publish post »</button>
+                            <small class="composer-help">Your new post appears at the top of the feed. Posts are only kept until you refresh this page.</small>
+                        </form>
+                    </div>
+                </section>
+
+
+                <article class="post">
+                    <header class="post-top">
+                        <div class="avatar" aria-hidden="true"></div>
+                        <div>
+                            <p class="poster-name">micha</p>
+                            <div class="post-meta">Posted 23-11-2026 · Public post</div>
+                        </div>
+                    </header>
+                    <div class="post-content">
+                        <h2>look at this image</h2>
+                        <p>Sharing a new picture with everyone on Vinci Media.</p>
+                        <img class="post-image" src="../images/WhatsApp Image 2026-11-23 at 21.00.37.jpeg" alt="Image shared in Micha's post">
+                    </div>
+                    <footer class="post-actions">
+                        <button class="old-button" type="button">Like</button>
+                        <button class="old-button" type="button">Comment</button>
+                        <button class="old-button" type="button">Share</button>
+                    </footer>
+                </article>
+            </section>
+
+            <aside class="right-column" aria-label="Sidebar information">
+                <section class="side-card">
+                    <h3>Your profile</h3>
+                    <div class="side-card-body">
+                        <strong>Welcome to Vinci Media!</strong><br>
+                        <span class="online">● Online now</span><br>
+                        Your little corner of the internet.
+                    </div>
+                </section>
+
+                <section class="side-card">
+                    <h3>What's happening?</h3>
+                    <div class="side-card-body">
+                        New posts, familiar faces and updates from your friends.
+                    </div>
+                </section>
+
+                <section class="side-card">
+                    <h3>Vinci Media notice</h3>
+                    <div class="side-card-body">
+                        <strong>Since 2006*</strong><br>
+                        Bringing back the classic social web feeling.
+                        <div class="tiny-note">*Retro-inspired design</div>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+
+    <script>
+        (function () {
+            const form = document.getElementById("post-form");
+            if (!form) return;
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const titleInput = document.getElementById("post-title");
+                const textInput = document.getElementById("post-text");
+                const imageInput = document.getElementById("post-image-file");
+                const title = titleInput.value.trim();
+                const text = textInput.value.trim();
+                const imageFile = imageInput.files[0];
+
+                if (!title && !text && !imageFile) {
+                    alert("Write something or choose a photo first!");
+                    return;
+                }
+
+                const post = document.createElement("article");
+                post.className = "post";
+
+                const top = document.createElement("header");
+                top.className = "post-top";
+
+                const avatar = document.createElement("div");
+                avatar.className = "avatar";
+                avatar.setAttribute("aria-hidden", "true");
+
+                const identity = document.createElement("div");
+                const name = document.createElement("p");
+                name.className = "poster-name";
+                name.textContent = "you";
+
+                const meta = document.createElement("div");
+                meta.className = "post-meta";
+                meta.textContent = "Just now · Public post";
+
+                identity.appendChild(name);
+                identity.appendChild(meta);
+                top.appendChild(avatar);
+                top.appendChild(identity);
+
+                const content = document.createElement("div");
+                content.className = "post-content";
+
+                if (title) {
+                    const heading = document.createElement("h2");
+                    heading.textContent = title;
+                    content.appendChild(heading);
+                }
+
+                if (text) {
+                    const paragraph = document.createElement("p");
+                    paragraph.textContent = text;
+                    content.appendChild(paragraph);
+                }
+
+                if (imageFile) {
+                    const image = document.createElement("img");
+                    image.className = "post-image";
+                    image.alt = "Photo attached to post";
+                    image.src = URL.createObjectURL(imageFile);
+                    content.appendChild(image);
+                }
+
+                const actions = document.createElement("footer");
+                actions.className = "post-actions";
+                ["Like", "Comment", "Share"].forEach(function (label) {
+                    const button = document.createElement("button");
+                    button.className = "old-button";
+                    button.type = "button";
+                    button.textContent = label;
+                    actions.appendChild(button);
+                });
+
+                post.appendChild(top);
+                post.appendChild(content);
+                post.appendChild(actions);
+
+                const feed = document.querySelector(".main-column");
+                const composer = document.querySelector(".composer");
+                feed.insertBefore(post, composer.nextSibling);
+
+                form.reset();
+                post.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+        })();
+    </script>
+
+    <!-- Keep using your existing sidebar navigation. -->
+    <script src="sidebar.js"></script>
+</body>
+</html>

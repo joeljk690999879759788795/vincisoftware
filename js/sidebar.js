@@ -10,7 +10,7 @@
 (function () {
   var CONFIG = {
     siteName: "My Cool Homepage",
-    logo: "vincisoft.jpg",                 // URL of a logo image. Leave "" for a text logo.
+    logo: "../images/vincisoft.jpg",                 // URL of a logo image. Leave "" for a text logo.
     logoText: "MyCoolSite",   // Text logo (used if no image)
     tagline: "Welcome to vinci social",
     links: [

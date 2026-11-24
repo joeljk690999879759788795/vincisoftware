@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinci Media</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1f2f5;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #1877f2;
+            font-weight: 700;
+        }
+
+        header h3 {
+            font-size: 13px;
+            color: #65676b;
+            font-weight: 400;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 20px 10px;
+        }
+
+        /* Post Card */
+        .post {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .post__top {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+        }
+
+        .post__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1877f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .post__info h2 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #050505;
+        }
+
+        .post__info span {
+            font-size: 13px;
+            color: #65676b;
+        }
+
+        .post__text {
+            padding: 0 15px 12px;
+            font-size: 15px;
+            color: #050505;
+        }
+
+        .post__image {
+            width: 100%;
+            display: block;
+        }
+
+        .post__image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Post Options */
+        .post__options {
+            border-top: 1px solid #eee;
+            margin-top: 10px;
+            padding: 8px 15px;
+            display: flex;
+            justify-content: space-around;
+            color: #65676b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .post__option {
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 150ms;
+        }
+
+        .post__option:hover {
+            background-color: #eff2f5;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vinci Media</h1>
+        <h3>posts from vinci straight to your doorstep</h3>
+    </header>
+
+    <div class="container">
+        <div class="post">
+            <div class="post__top">
+                <div class="post__avatar">M</div>
+                <div class="post__info">
+                    <h2>micha</h2>
+                    <span>23-11-2026</span>
+                </div>
+            </div>
+
+            <div class="post__text">look at this image</div>
+
+            <div class="post__image">
+                <img src="../images/WhatsApp Image 2026-11-23 at 21.00.37.jpeg" alt="Post image">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>   
